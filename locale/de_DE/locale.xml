@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale/de_DE/locale.xml
+  *
+  * Copyright (c) 2014-2017 Simon Fraser University
+  * Copyright (c) 2003-2017 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  -->
+
+<locale name="de_DE" full_name="Deutsch">
+	<message key="plugins.generic.disqus.displayName">Disqus Plugin</message>
+	<message key="plugins.generic.disqus.description">Integriert ein Disqus-Forum in den Artikelübersichtsseiten</message>
+	<message key="plugins.generic.disqus.manager.settings.description">Vergessen Sie nicht den Kurznamen Ihres Forums anzugeben</message>
+	<message key="plugins.generic.disqus.manager.settings.disqusForumName">Kurzname des Disqus-Forums</message>
+	<message key="plugins.generic.disqus.manager.settings.disqusForumNameRequired">Kurzname des Disqus-Forums ist erforderlich</message>
+</locale>
