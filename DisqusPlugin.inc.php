@@ -3,8 +3,8 @@
 /**
  * @file plugins/generic/disqus/DisqusPlugin.inc.php
  *
- * Copyright (c) 2014-2017 Simon Fraser University
- * Copyright (c) 2003-2017 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class disqus
@@ -26,10 +26,10 @@ class DisqusPlugin extends GenericPlugin {
 		$success = parent::register($category, $path);
 		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return true;
 		if ($success && $this->getEnabled()) {
-			
-			// Insert Disqus div
-			HookRegistry::register('Templates::Article::Footer::PageFooter', array($this, 'addDisqus'));
-		
+
+			// Insert Disqus
+			HookRegistry::register('Templates::Article::Footer::PageFooter', array($this, 'addDisqus'));			
+
 		}
 		return $success;
 	}
@@ -119,20 +119,29 @@ class DisqusPlugin extends GenericPlugin {
 		$disqusForumName = $this->getSetting($context->getId(), 'disqusForumName');
 
 		if (empty($disqusForumName)) return false;
-				
+
 		$smarty =& $params[1];
 		$output =& $params[2];
-		
-		$article = $smarty->get_template_vars('article');
-		$articleUrl = $request->url($context->getPath(), 'article', 'view', $article->getBestArticleId());
+
+		if ($templateMgr->get_template_vars('monograph')){
+			$submission = $templateMgr->get_template_vars('monograph');
+			$submissionId = $submission->getBestId();
+			$submissionUrl = $request->url($context->getPath(), 'monograph', 'view', $submissionId);
+
+		}
+		else{
+			$submission = $templateMgr->get_template_vars('article');
+			$submissionId = $submission->getBestArticleId();
+			$submissionUrl = $request->url($context->getPath(), 'article', 'view', $submissionId);
+		}
 
 		$smarty->assign('disqusForumName', $disqusForumName);
-		$smarty->assign('articleId', $article->getBestArticleId());
-		$smarty->assign('articleUrl', $articleUrl);
-		
-		$output .= $smarty->fetch($this->getTemplatePath() . 'articleFooter.tpl');
+		$smarty->assign('submissionId', $submissionId);
+		$smarty->assign('submissionUrl', $submissionUrl);
+
+		$output .= $smarty->fetch($this->getTemplatePath() . 'forum.tpl');
 		return false;		
-		
+
 	}
 }
 

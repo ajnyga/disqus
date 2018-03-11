@@ -4,22 +4,17 @@
 <!--
   * plugins/generic/disqus/locale/en_US/locale.xml
   *
-  * Copyright (c) 2014-2017 Simon Fraser University
-  * Copyright (c) 2003-2017 John Willinsky
+  * Copyright (c) 2014-2018 Simon Fraser University
+  * Copyright (c) 2003-2018 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * disqus plugin localization strings
   -->
  
 <locale name="en_US" full_name="U.S. English">
-
-
-	<message key="plugins.generic.disqus.displayName">Disqus Plugin</message>
-	<message key="plugins.generic.disqus.description">Integrate Disqus forum to article abstract pages</message>
-	<message key="plugins.generic.disqus.manager.settings.description">Don't forget to give your forum's shortname.</message>
-	<message key="plugins.generic.disqus.manager.settings.disqusForumName">Disqus forum's shortname</message>
-	<message key="plugins.generic.disqus.manager.settings.disqusForumNameRequired">Disqus forum's shortname is required</message>	
-	
-
-
+  <message key="plugins.generic.disqus.displayName">Disqus Plugin</message>
+  <message key="plugins.generic.disqus.description">Integrate Disqus forum to article abstract pages</message>
+  <message key="plugins.generic.disqus.manager.settings.description">Don't forget to give your forum's shortname.</message>
+  <message key="plugins.generic.disqus.manager.settings.disqusForumName">Disqus forum's shortname</message>
+  <message key="plugins.generic.disqus.manager.settings.disqusForumNameRequired">Disqus forum's shortname is required</message>	
 </locale>

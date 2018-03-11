@@ -1,8 +1,8 @@
 {**
  * plugins/generic/disqus/settingsForm.tpl
  *
- * Copyright (c) 2014-2017 Simon Fraser University
- * Copyright (c) 2003-2017 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Disqus plugin settings
@@ -21,7 +21,7 @@
 
 	<div id="description">{translate key="plugins.generic.disqus.manager.settings.description"}</div>
 
-	{fbvFormArea id="webFeedSettingsFormArea"}
+	{fbvFormArea id="disqusSettingsFormArea"}
 		{fbvElement type="text" name="disqusForumName" value=$disqusForumName label="plugins.generic.disqus.manager.settings.disqusForumName"}
 	{/fbvFormArea}
 

@@ -3,14 +3,14 @@
 /**
  * @file plugins/generic/disqus/DisqusSettingsForm.inc.php
  *
- * Copyright (c) 2014-2017 Simon Fraser University
- * Copyright (c) 2003-2017 John Willinsky
+ * Copyright (c) 2014-2018 Simon Fraser University
+ * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class disqusSettingsForm
  * @ingroup plugins_generic_disqus
  *
- * @brief Form for journal managers to modify disqus plugin settings
+ * @brief Form for managers to modify disqus plugin settings
  */
 
 import('lib.pkp.classes.form.Form');
@@ -18,7 +18,7 @@ import('lib.pkp.classes.form.Form');
 class DisqusSettingsForm extends Form {
 
 	/** @var int */
-	var $_journalId;
+	var $_contextId;
 
 	/** @var object */
 	var $_plugin;
@@ -26,10 +26,10 @@ class DisqusSettingsForm extends Form {
 	/**
 	 * Constructor
 	 * @param $plugin DisqusPlugin
-	 * @param $journalId int
+	 * @param $contextId int
 	 */
-	function __construct($plugin, $journalId) {
-		$this->_journalId = $journalId;
+	function __construct($plugin, $contextId) {
+		$this->_contextId = $contextId;
 		$this->_plugin = $plugin;
 
 		parent::__construct($plugin->getTemplatePath() . 'settingsForm.tpl');
@@ -45,7 +45,7 @@ class DisqusSettingsForm extends Form {
 	 */
 	function initData() {
 		$this->_data = array(
-			'disqusForumName' => $this->_plugin->getSetting($this->_journalId, 'disqusForumName'),
+			'disqusForumName' => $this->_plugin->getSetting($this->_contextId, 'disqusForumName'),
 		);
 	}
 
@@ -70,7 +70,7 @@ class DisqusSettingsForm extends Form {
 	 * Save settings.
 	 */
 	function execute() {
-		$this->_plugin->updateSetting($this->_journalId, 'disqusForumName', trim($this->getData('disqusForumName'), "\"\';"), 'string');
+		$this->_plugin->updateSetting($this->_contextId, 'disqusForumName', trim($this->getData('disqusForumName'), "\"\';"), 'string');
 	}
 }
 
