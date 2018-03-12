@@ -120,14 +120,13 @@ class DisqusPlugin extends GenericPlugin {
 
 		if (empty($disqusForumName)) return false;
 
-		$smarty =& $params[1];
+		$templateMgr =& $params[1];
 		$output =& $params[2];
 
 		if ($templateMgr->get_template_vars('monograph')){
 			$submission = $templateMgr->get_template_vars('monograph');
 			$submissionId = $submission->getBestId();
 			$submissionUrl = $request->url($context->getPath(), 'monograph', 'view', $submissionId);
-
 		}
 		else{
 			$submission = $templateMgr->get_template_vars('article');
@@ -135,11 +134,11 @@ class DisqusPlugin extends GenericPlugin {
 			$submissionUrl = $request->url($context->getPath(), 'article', 'view', $submissionId);
 		}
 
-		$smarty->assign('disqusForumName', $disqusForumName);
-		$smarty->assign('submissionId', $submissionId);
-		$smarty->assign('submissionUrl', $submissionUrl);
+		$templateMgr->assign('disqusForumName', $disqusForumName);
+		$templateMgr->assign('submissionId', $submissionId);
+		$templateMgr->assign('submissionUrl', $submissionUrl);
 
-		$output .= $smarty->fetch($this->getTemplatePath() . 'forum.tpl');
+		$output .= $templateMgr->fetch($this->getTemplatePath() . 'forum.tpl');
 		return false;		
 
 	}

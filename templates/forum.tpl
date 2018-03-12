@@ -6,17 +6,16 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * A template to be included under the abstract.
- * https://help.disqus.com/customer/portal/articles/472097-universal-embed-code
  *}
 <div id="disqus_thread"></div>
 <script>
 
 var disqus_config = function () {ldelim}
-	this.page.url = {$articleUrl};
-	this.page.identifier = {$articleId};
+	this.page.url = '{$submissionUrl|escape}';
+	this.page.identifier = '{$submissionId|escape}';
 {rdelim};
 
-(function() {ldelim} // DON'T EDIT BELOW THIS LINE
+(function() {ldelim}
 	var d = document, s = d.createElement('script');
 	s.src = '//{$disqusForumName|escape}.disqus.com/embed.js';
 	s.setAttribute('data-timestamp', +new Date());
