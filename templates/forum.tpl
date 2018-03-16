@@ -11,8 +11,8 @@
 <script>
 
 var disqus_config = function () {ldelim}
-	this.page.url = '{$submissionUrl|json_encode}';
-	this.page.identifier = '{$submissionId|json_encode}';
+	this.page.url = {$submissionUrl|json_encode};
+	this.page.identifier = {$submissionId|json_encode};
 {rdelim};
 
 (function() {ldelim}
