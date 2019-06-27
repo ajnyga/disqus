@@ -22,17 +22,26 @@ class DisqusPlugin extends GenericPlugin {
 	 * @return boolean True iff plugin initialized successfully; if false,
 	 * 	the plugin will not be registered.
 	 */
-	function register($category, $path) {
-		$success = parent::register($category, $path);
-		if (!Config::getVar('general', 'installed') || defined('RUNNING_UPGRADE')) return true;
-		if ($success && $this->getEnabled()) {
+	function register($category, $path, $mainContextId = null) {
+		$success = parent::register($category, $path, $mainContextId);
+		if (!Config::getVar('general', 'installed')) return false;
 
+		$request = $this->getRequest();
+		$context = $request->getContext();
+		if ($success && $this->getEnabled(($mainContextId))) {
+			$this->_registerTemplateResource();
 			// Insert Disqus
-			HookRegistry::register('Templates::Article::Footer::PageFooter', array($this, 'addDisqus'));			
-
+			HookRegistry::register('Templates::Article::Footer::PageFooter', array($this, 'addDisqus'));
 		}
 		return $success;
 	}
+
+	/**
+         * @see LazyLoadPlugin::getName()
+         */
+        function getName() {
+                return 'DisqusPlugin';
+        }
 
 	/**
 	 * Get the plugin display name.
@@ -53,23 +62,36 @@ class DisqusPlugin extends GenericPlugin {
 	/**
 	 * @copydoc Plugin::getActions()
 	 */
-	function getActions($request, $verb) {
+	function getActions($request, $actionArgs) {
+		$actions = parent::getActions($request, $actionArgs);
+                // Settings are only context-specific
+                if (!$this->getEnabled()) {
+                        return $actions;
+                }
 		$router = $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		return array_merge(
-			$this->getEnabled()?array(
-				new LinkAction(
-					'settings',
-					new AjaxModal(
-						$router->url($request, null, null, 'manage', null, array('verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'generic')),
-						$this->getDisplayName()
-					),
-					__('manager.plugins.settings'),
-					null
-				),
-			):array(),
-			parent::getActions($request, $verb)
-		);
+		$linkAction = new LinkAction(
+			'settings',
+			new AjaxModal(
+                                $router->url(
+                                        $request,
+                                        null,
+                                        null,
+                                        'manage',
+                                        null,
+                                        array(
+                                                'verb' => 'settings',
+                                                'plugin' => $this->getName(),
+                                                'category' => 'generic'
+                                        )
+                                ),
+                                $this->getDisplayName()
+                        ),
+                        __('manager.plugins.settings'),
+                        null
+                );
+		array_unshift($actions, $linkAction);
+		return $actions;
 	}
 
  	/**
@@ -102,13 +124,6 @@ class DisqusPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPlugin::getTemplatePath
-	 */
-	function getTemplatePath($inCore = false) {
-		return parent::getTemplatePath($inCore) . 'templates/';
-	}
-
-	/**
 	 * Add the Disqus forum div
 	 * @param $hookName string
 	 * @param $params array
@@ -138,7 +153,7 @@ class DisqusPlugin extends GenericPlugin {
 		$templateMgr->assign('submissionId', $submissionId);
 		$templateMgr->assign('submissionUrl', $submissionUrl);
 
-		$output .= $templateMgr->fetch($this->getTemplatePath() . 'forum.tpl');
+		$output .= $templateMgr->fetch($this->getTemplateResource('forum.tpl'));
 		return false;		
 
 	}

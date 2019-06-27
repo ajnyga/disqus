@@ -18,10 +18,10 @@ import('lib.pkp.classes.form.Form');
 class DisqusSettingsForm extends Form {
 
 	/** @var int */
-	var $_contextId;
+	var $contextId;
 
 	/** @var object */
-	var $_plugin;
+	var $plugin;
 
 	/**
 	 * Constructor
@@ -29,10 +29,10 @@ class DisqusSettingsForm extends Form {
 	 * @param $contextId int
 	 */
 	function __construct($plugin, $contextId) {
-		$this->_contextId = $contextId;
-		$this->_plugin = $plugin;
+		$this->contextId = $contextId;
+		$this->plugin = $plugin;
 
-		parent::__construct($plugin->getTemplatePath() . 'settingsForm.tpl');
+		parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 
 		$this->addCheck(new FormValidator($this, 'disqusForumName', 'required', 'plugins.generic.disqus.manager.settings.disqusForumNameRequired'));
 
@@ -45,7 +45,7 @@ class DisqusSettingsForm extends Form {
 	 */
 	function initData() {
 		$this->_data = array(
-			'disqusForumName' => $this->_plugin->getSetting($this->_contextId, 'disqusForumName'),
+			'disqusForumName' => $this->plugin->getSetting($this->contextId, 'disqusForumName'),
 		);
 	}
 
@@ -60,17 +60,17 @@ class DisqusSettingsForm extends Form {
 	 * Fetch the form.
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	function fetch($request, $template = null, $display = false) {
 		$templateMgr = TemplateManager::getManager($request);
-		$templateMgr->assign('pluginName', $this->_plugin->getName());
-		return parent::fetch($request);
+		$templateMgr->assign('pluginName', $this->plugin->getName());
+		return parent::fetch($request, $template, $display);
 	}
 
 	/**
 	 * Save settings.
 	 */
 	function execute() {
-		$this->_plugin->updateSetting($this->_contextId, 'disqusForumName', trim($this->getData('disqusForumName'), "\"\';"), 'string');
+		$this->plugin->updateSetting($this->contextId, 'disqusForumName', trim($this->getData('disqusForumName'), "\"\';"), 'string');
 	}
 }
 

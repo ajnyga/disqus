@@ -22,7 +22,7 @@
 	<div id="description">{translate key="plugins.generic.disqus.manager.settings.description"}</div>
 
 	{fbvFormArea id="disqusSettingsFormArea"}
-		{fbvElement type="text" name="disqusForumName" value=$disqusForumName label="plugins.generic.disqus.manager.settings.disqusForumName"}
+		{fbvElement id="disqusForumName" type="text" name="disqusForumName" value=$disqusForumName label="plugins.generic.disqus.manager.settings.disqusForumName"}
 	{/fbvFormArea}
 
 	{fbvFormButtons}

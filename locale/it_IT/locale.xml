@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * plugins/generic/disqus/locale/it_IT/locale.xml
+  *
+  * Copyright (c) 2014-2019 Simon Fraser University
+  * Copyright (c) 2003-2019 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * disqus plugin localization strings
+  -->
+
+<locale name="it_IT" full_name="Italiano">
+	<message key="plugins.generic.disqus.displayName">Plugin Disqus</message>
+	<message key="plugins.generic.disqus.description">Questo plugin integra un forum Disqus nella pagina di abstract dell'articolo</message>
+	<message key="plugins.generic.disqus.manager.settings.description">Non dimenticare di inserire il nome breve del vostro forum.</message>
+	<message key="plugins.generic.disqus.manager.settings.disqusForumName">Nome breve del forum Disqus</message>
+	<message key="plugins.generic.disqus.manager.settings.disqusForumNameRequired">È richiesto il nome breve del forum Disqus</message>
+</locale>
