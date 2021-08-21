@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-08-21T13:33:13+02:00\n"
+"PO-Revision-Date: 2021-08-21T13:33:13+02:00\n"
+"Language: \n"
+
+msgid "plugins.generic.disqus.displayName"
+msgstr "Plugiciel Disqus"
+
+msgid "plugins.generic.disqus.description"
+msgstr "Ce plugiciel intègre le forum Disqus aux pages des résumés d'articles."
+
+msgid "plugins.generic.disqus.manager.settings.description"
+msgstr "N'oubliez pas d'entrer le nom abrégé de votre forum."
+
+msgid "plugins.generic.disqus.manager.settings.disqusForumName"
+msgstr "Nom abrégé du forum Disqus"
+
+msgid "plugins.generic.disqus.manager.settings.disqusForumNameRequired"
+msgstr "Le nom abrégé du forum Disqus est obligatoire"

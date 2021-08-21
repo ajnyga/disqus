@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-08-21T13:33:13+02:00\n"
+"PO-Revision-Date: 2021-08-21T13:33:13+02:00\n"
+"Language: \n"
+
+msgid "plugins.generic.disqus.displayName"
+msgstr "Disqus-lisäosa"
+
+msgid "plugins.generic.disqus.description"
+msgstr "Lisää Disqus-foorumin abstraktisivulle."
+
+msgid "plugins.generic.disqus.manager.settings.description"
+msgstr "Muista antaa foorumin nimi."
+
+msgid "plugins.generic.disqus.manager.settings.disqusForumName"
+msgstr "Disqus-foorumin nimi"
+
+msgid "plugins.generic.disqus.manager.settings.disqusForumNameRequired"
+msgstr "Disqus-foorumin nimi vaaditaan."
